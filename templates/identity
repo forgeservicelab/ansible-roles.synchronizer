@@ -1,0 +1,8 @@
+api_key={{ insightly_api_key }}
+ldap={{ ldap_host }}
+bind={{ ldap_bind_cn }}
+password={{ ldap_admin_password }}
+os_user={{ os_admin_user }}
+os_pass={{ os_admin_pwd }}
+os_tenant={{ os_admin_tenant }}
+redmine_api={{ redmine_api_key }}

@@ -1,0 +1,39 @@
+---
+- yum:
+    name: "{{ item }}"
+  with_items:
+    - python-pip
+    - python-devel
+    - libffi-devel
+
+- pip:
+    name: "{{ item }}"
+  with_items:
+    - Unidecode
+    - cryptography==0.6.1
+    - httplib2.ca-certs-locater
+    - python-ldap
+    - netifaces
+    - python-cinderclient==1.0.9
+    - python-glanceclient==0.13.1
+    - python-keystoneclient==0.11.2
+    - python-neutronclient==2.3.6
+    - python-novaclient==2.20.0
+    - python-swiftclient==2.3.1
+
+- unarchive:
+    src: insightly-ldap.tgz
+    dest: /usr/local/lib
+    creates: /usr/local/lib/Insightly_LDAP
+
+- template:
+    src: identity
+    dest: /usr/local/lib/Insightly_LDAP/identity
+    owner: root
+    group: root
+    mode: 0600
+
+- cron:
+    name: Poll Insightly for updates
+    minute: '*/5'
+    job: /usr/local/lib/Insightly_LDAP/ldapsync.py -r /usr/local/lib/Insightly_LDAP/identity >> /dev/null 2>&1

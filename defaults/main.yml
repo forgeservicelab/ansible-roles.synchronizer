@@ -1,0 +1,4 @@
+---
+# defaults file for synchronizer
+ldap_host: localhost
+ldap_bind_cn: admin
