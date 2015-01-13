@@ -6,11 +6,11 @@ Sets up the environment to recurringly run the sync script to pull data from Ins
 Role Variables
 --------------
 
-# Defaults:
+### Defaults:
   - `ldap_host` - FQDN or IP of the LDAP server to update (defaults to `localhost`).
   - `ldap_bind_cn` - CN of the account used to bind and update LDAP, it must have write rights (defaults to `admin`).
 
-# Variable Parameters and/or global scope variables:
+### Variable Parameters and/or global scope variables:
   - `ìnsightly_api_key` - Insightly API key.
   - `ldap_admin_passsword` - LDAP password of the bind account above.
   - `os_admin_user` - Administrator username for OpenStack.
