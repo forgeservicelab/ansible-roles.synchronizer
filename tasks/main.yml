@@ -5,6 +5,7 @@
     - python-pip
     - python-devel
     - libffi-devel
+    - git
 
 - pip:
     name: "{{ item }}"
@@ -21,10 +22,16 @@
     - python-novaclient==2.20.0
     - python-swiftclient==2.3.1
 
-- unarchive:
-    src: insightly-ldap.tgz
-    dest: /usr/local/lib
-    creates: /usr/local/lib/Insightly_LDAP
+- file:
+    path: /usr/local/lib/
+    mode: 0757
+
+- git:
+    repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/insightly-sync.git
+    dest: /usr/local/lib/Insightly_LDAP
+    accept_hostkey: yes
+    ssh_opts: "-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+  sudo: false
 
 - template:
     src: identity
