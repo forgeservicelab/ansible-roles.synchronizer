@@ -10,11 +10,13 @@
 - pip:
     name: "{{ item }}"
   with_items:
-    - Unidecode
+    - Unidecode==0.4.17
     - cryptography==0.6.1
     - httplib2.ca-certs-locater
     - python-ldap
     - netifaces
+    - fuzzywuzzy
+    - python-Levenshtein
     - python-cinderclient==1.0.9
     - python-glanceclient==0.13.1
     - python-keystoneclient==0.11.2
@@ -44,3 +46,4 @@
     name: Poll Insightly for updates
     minute: '*/5'
     job: /usr/local/lib/Insightly_LDAP/ldapsync.py -r /usr/local/lib/Insightly_LDAP/identity >> /dev/null 2>&1
+    user: "{{ cron_user }}"
